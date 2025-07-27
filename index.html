@@ -6,6 +6,30 @@
   <title>SENTRO PARTYLIST</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+.fire-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* so the fire doesn’t block any clicks */
+  z-index: 0; /* place it below your main content */
+  overflow: hidden;
+}
+
+.fire-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9; /* adjust how visible the fire is */
+  animation: fire-flicker 2s infinite alternate ease-in-out;
+}
+
+@keyframes fire-flicker {
+  0% { transform: scale(1.02) translateY(-1px); opacity: 0.2; }
+  100% { transform: scale(1.05) translateY(1px); opacity: 0.3; }
+}
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: 'Inter', sans-serif;
@@ -52,11 +76,10 @@
     }
 
     .site-wrapper {
-      opacity: 0;
-      animation: fadeIn 1.2s ease-out forwards;
-      animation-delay: 0.1s;
-      animation-fill-mode: forwards;
-    }
+  position: relative;
+  z-index: 1;
+}
+
 
     .topnav {
       position: fixed;
@@ -97,16 +120,17 @@
       justify-content: center;
       text-align: center;
       background:
-        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url('sentrogroup.png') no-repeat center center;
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), /* increased from 0.4 to 0.65 */
+    url('sentrogroup.png') no-repeat center center;
       background-size: cover;
       padding-top: 60px;
     }
 
     header h1 {
       color: #fff;
-      font-size: 48px;
+      font-size: 50px;
       font-family: 'Playfair Display', serif;
+text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
     }
 
     .logo {
@@ -235,7 +259,7 @@
       }
 
       header h1 {
-        font-size: 36px;
+        font-size: 50px;
       }
 
       .topnav {
@@ -256,6 +280,10 @@
   </style>
 </head>
 <body>
+<div class="fire-overlay">
+  <img src="https://media.tenor.com/3Dv1dt0VcxUAAAAM/fire.gif" alt="Fire" />
+</div>
+
   <div class="site-wrapper">
     <!-- Top nav -->
     <div class="topnav fade-in-up">
