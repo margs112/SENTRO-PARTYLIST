@@ -23,22 +23,52 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(139, 0, 0, 0.75); /* deeper red */
+      background-color: rgba(139, 0, 0, 0.75);
       z-index: -1;
     }
 
- .topnav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #460000; /* This is a strong classy red */
-  z-index: 1001;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-}
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease-out forwards;
+    }
+
+    .site-wrapper {
+      opacity: 0;
+      animation: fadeIn 1.2s ease-out forwards;
+      animation-delay: 0.1s;
+      animation-fill-mode: forwards;
+    }
+
+    .topnav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #460000;
+      z-index: 1001;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+    }
 
     .topnav .logo-text {
       color: white;
@@ -226,99 +256,99 @@
   </style>
 </head>
 <body>
-
-<!-- Top nav -->
-<div class="topnav">
-  <div class="logo-text">Sentro</div>
-  <div class="topnav-links">
-    <a href="https://facebook.com">Home</a>
-    <a href="https://www.facebook.com/DLSLSentro">Facebook</a>
-    <a href="https://www.instagram.com/sentrogram/">Instagram</a>
-    <a href="https://www.dlsl.edu.ph/">DLSL Website</a>
-  </div>
-</div>
-
-<header>
-  <div class="logo">
-    <img src="sentro.png" alt="Sentro Logo" />
-  </div>
-  <h1>Sentro Partylist</h1>
-</header>
-
-<section class="module-group">
-  <h2>About Sentro</h2>
-  <div class="modules">
-    <div class="module">
-      <img src="sentro.png" alt="Credentials">
-      <div class="module-content">
-        <h3>Credentials</h3>
-        <p>See our track record, leadership experience, and achievements through the years.</p>
-        <button class="btn" id="btn1">View Credentials</button>
+  <div class="site-wrapper">
+    <!-- Top nav -->
+    <div class="topnav fade-in-up">
+      <div class="logo-text">Sentro</div>
+      <div class="topnav-links">
+        <a href="https://facebook.com">Home</a>
+        <a href="https://www.facebook.com/DLSLSentro">Facebook</a>
+        <a href="https://www.instagram.com/sentrogram/">Instagram</a>
+        <a href="https://www.dlsl.edu.ph/">DLSL Website</a>
       </div>
     </div>
-    <div class="module">
-      <img src="sentro.png" alt="Platforms">
-      <div class="module-content">
-        <h3>Platforms</h3>
-        <p>Explore our goals and actionable plans for student empowerment and support.</p>
-        <button class="btn" id="btn2">View Platforms</button>
+
+    <header class="fade-in-up">
+      <div class="logo">
+        <img src="sentro.png" alt="Sentro Logo" />
       </div>
-    </div>
-    <div class="module">
-      <img src="sentro.png" alt="Photobooth">
-      <div class="module-content">
-        <h3>Photobooth</h3>
-        <p>View our Credentials and Platforms to Access your Photobooth Pictures!</p>
-        <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
+      <h1>Sentro Partylist</h1>
+    </header>
+
+    <section class="module-group fade-in-up">
+      <h2>About Sentro</h2>
+      <div class="modules">
+        <div class="module">
+          <img src="sentro.png" alt="Credentials">
+          <div class="module-content">
+            <h3>Credentials</h3>
+            <p>See our track record, leadership experience, and achievements through the years.</p>
+            <button class="btn" id="btn1">View Credentials</button>
+          </div>
+        </div>
+        <div class="module">
+          <img src="sentro.png" alt="Platforms">
+          <div class="module-content">
+            <h3>Platforms</h3>
+            <p>Explore our goals and actionable plans for student empowerment and support.</p>
+            <button class="btn" id="btn2">View Platforms</button>
+          </div>
+        </div>
+        <div class="module">
+          <img src="sentro.png" alt="Photobooth">
+          <div class="module-content">
+            <h3>Photobooth</h3>
+            <p>View our Credentials and Platforms to Access your Photobooth Pictures!</p>
+            <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <footer class="fade-in">
+      © 2025 Sentro · All rights reserved
+    </footer>
   </div>
-</section>
 
-<footer>
-  © 2025 Sentro · All rights reserved 
-</footer>
+  <script>
+    const site1 = "https://example.com/module1";
+    const site2 = "https://example.com/module2";
+    const site3 = "https://example.com/final";
 
-<script>
-  const site1 = "https://example.com/module1";
-  const site2 = "https://example.com/module2";
-  const site3 = "https://example.com/final";
+    let visited1 = localStorage.getItem("visited1") === "true";
+    let visited2 = localStorage.getItem("visited2") === "true";
 
-  let visited1 = localStorage.getItem("visited1") === "true";
-  let visited2 = localStorage.getItem("visited2") === "true";
+    const b1 = document.getElementById("btn1");
+    const b2 = document.getElementById("btn2");
+    const b3 = document.getElementById("btn3");
 
-  const b1 = document.getElementById("btn1");
-  const b2 = document.getElementById("btn2");
-  const b3 = document.getElementById("btn3");
-
-  function unlockFinalModule() {
-    if (visited1 && visited2) {
-      b3.disabled = false;
-      b3.classList.remove("locked");
-      b3.textContent = "✔ Access Photobooth";
+    function unlockFinalModule() {
+      if (visited1 && visited2) {
+        b3.disabled = false;
+        b3.classList.remove("locked");
+        b3.textContent = "✔ Access Photobooth";
+      }
     }
-  }
 
-  b1.addEventListener("click", () => {
-    visited1 = true;
-    localStorage.setItem("visited1", "true");
+    b1.addEventListener("click", () => {
+      visited1 = true;
+      localStorage.setItem("visited1", "true");
+      unlockFinalModule();
+      setTimeout(() => window.open(site1, "_blank"), 300);
+    });
+
+    b2.addEventListener("click", () => {
+      visited2 = true;
+      localStorage.setItem("visited2", "true");
+      unlockFinalModule();
+      setTimeout(() => window.open(site2, "_blank"), 300);
+    });
+
+    b3.addEventListener("click", () => {
+      if (!b3.disabled) window.open(site3, "_blank");
+    });
+
     unlockFinalModule();
-    setTimeout(() => window.open(site1, "_blank"), 300);
-  });
-
-  b2.addEventListener("click", () => {
-    visited2 = true;
-    localStorage.setItem("visited2", "true");
-    unlockFinalModule();
-    setTimeout(() => window.open(site2, "_blank"), 300);
-  });
-
-  b3.addEventListener("click", () => {
-    if (!b3.disabled) window.open(site3, "_blank");
-  });
-
-  unlockFinalModule();
-</script>
-
+  </script>
 </body>
 </html>
