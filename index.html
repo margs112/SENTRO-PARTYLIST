@@ -3,108 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SENTRO PARTYLIST</title>
+  <title>Sentro Partylist</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       font-family: 'Inter', sans-serif;
-      background: url('red2.jpg') no-repeat center center;
+      background: url('red.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #1f2937;
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  0% { opacity: 0; transform: translateY(-30px); }
-  100% { opacity: 1; transform: translateY(0); }
+.module-content h3,
+.module-content p {
+  color: #000;
 }
 
-/* Add these inside your existing style definitions */
-
-header {
-  /* existing styles... */
-  animation: fadeIn 1s ease-out forwards;
+body {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  background: url('red.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #f8fafc;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  z-index: 0;
 }
 
-.logo {
-  /* existing styles... */
-  animation: fadeInDown 1.2s ease-out forwards;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.65); /* DARK overlay */
+  z-index: -1;
 }
 
-.module {
-  animation: fadeInUp 1.5s ease both;
-  animation-delay: 0.2s;
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  animation: fadeIn 1.4s ease-in-out;
 }
 
-.module:nth-child(2) {
-  animation-delay: 0.4s;
+.intro-card {
+  max-width: 700px; /* Match credentials/platforms card */
+  margin: 0 auto;
+  background-color: #7f1d1d; /* Deep red background */
+  color: #fff;
+  padding: 40px 32px;
+  border-radius: 18px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  animation: fadeUp 1.4s ease-in-out;
 }
 
-.module:nth-child(3) {
-  animation-delay: 0.6s;
+
+.intro-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  animation: glowText 2s ease-in-out infinite alternate;
 }
 
-footer {
-  animation: fadeIn 2s ease-out forwards;
+.underline {
+  width: 60px;
+  height: 4px;
+  margin: 12px auto 28px;
+  background: #dc2626; /* red */
+  border-radius: 2px;
 }
 
-/* Optional: Smooth transition for text and buttons too */
-.module-content h3, .module-content p, .btn {
-  opacity: 0;
-  animation: fadeInUp 1.5s ease forwards;
-  animation-delay: 0.6s;
+.intro-card p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #e2e8f0;
+  margin-bottom: 30px;
 }
+
+.btn.cta {
+  background-color: #dc2626;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+}
+
+.btn.cta:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+.btn.cta:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+/* New animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+  to { text-shadow: 0 0 16px rgba(255,255,255,0.5); }
+}
+
 
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(139, 0, 0, 0.75); /* deeper red */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
       z-index: -1;
-    }
-
- .topnav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #460000; /* This is a strong classy red */
-  z-index: 1001;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-}
-
-
-    .topnav .logo-text {
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .topnav-links a {
-      color: #f8fafc;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .topnav-links a:hover {
-      color: #dc2626;
+  linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     }
 
     header {
@@ -118,13 +139,21 @@ footer {
         linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
         url('sentrogroup.png') no-repeat center center;
       background-size: cover;
-      padding-top: 60px;
+      animation: fadeInDown 1s ease-out;
+      transition: all 0.3s ease;
+    }
+
+
+    header.shrink {
+      height: 100px;
+      background-size: cover;
     }
 
     header h1 {
       color: #fff;
       font-size: 48px;
       font-family: 'Playfair Display', serif;
+      z-index: 1;
     }
 
     .logo {
@@ -142,6 +171,27 @@ footer {
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
+    .intro {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .intro h2 {
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #eee;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
     .module-group {
       max-width: 1000px;
       margin: 60px auto;
@@ -149,6 +199,7 @@ footer {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeInUp 1s ease forwards;
     }
 
     .module-group h2 {
@@ -174,10 +225,11 @@ footer {
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1s ease;
     }
 
     .module:hover {
-      transform: translateY(-10px);
+      transform: scale(1.05);
       box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     }
 
@@ -246,6 +298,22 @@ footer {
       color: #22d3ee;
     }
 
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (max-width: 768px) {
       .modules {
         flex-direction: column;
@@ -256,117 +324,102 @@ footer {
         font-size: 36px;
       }
 
-      .topnav {
-        flex-direction: column;
-        padding: 10px 20px;
-        align-items: flex-start;
-      }
-
-      .topnav-links {
-        margin-top: 10px;
-      }
-
-      .topnav-links a {
-        margin-left: 0;
-        margin-right: 15px;
+      .intro h2 {
+        font-size: 26px;
       }
     }
+
   </style>
 </head>
 <body>
 
-<!-- Top nav -->
-<div class="topnav">
-  <div class="logo-text">Sentro</div>
-  <div class="topnav-links">
-    <a href="https://facebook.com">Home</a>
-    <a href="https://www.facebook.com/DLSLSentro">Facebook</a>
-    <a href="https://www.instagram.com/sentrogram/">Instagram</a>
-    <a href="https://www.dlsl.edu.ph/">DLSL Website</a>
-  </div>
-</div>
+  <header>
+    <div class="logo">
+      <img src="sentro.png" alt="Sentro Logo" />
+    </div>
+    <h1>Sentro Partylist</h1>
+  </header>
 
-<header>
-  <div class="logo">
-    <img src="sentro.png" alt="Sentro Logo" />
-  </div>
-  <h1></h1>
-</header>
 
-<section class="module-group">
-  <h2>About Sentro</h2>
-  <div class="modules">
-    <div class="module">
-      <img src="sentro.png" alt="Credentials">
-      <div class="module-content">
-        <h3>Credentials</h3>
-        <p>See our track record, leadership experience, and achievements through the years.</p>
-        <button class="btn" id="btn1">View Credentials</button>
+
+
+  <section class="module-group">
+    <h2>Explore</h2>
+    <div class="modules">
+      <div class="module">
+        <img src="sentro.png" alt="Credentials">
+        <div class="module-content">
+          <h3>Credentials</h3>
+          <p>See our track record, leadership experience, and achievements through the years.</p>
+          <button class="btn" id="btn1">View Credentials</button>
+        </div>
+      </div>
+
+      <div class="module">
+        <img src="sentro.png" alt="Platforms">
+        <div class="module-content">
+          <h3>Platforms</h3>
+          <p>Explore our goals and actionable plans for student empowerment and support.</p>
+          <button class="btn" id="btn2">View Platforms</button>
+        </div>
+      </div>
+
+      <div class="module">
+        <img src="sentro.png" alt="Photobooth">
+        <div class="module-content">
+          <h3>Photobooth</h3>
+          <p>View snapshots from our campaign — a gallery of memories and unity.</p>
+          <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
+        </div>
       </div>
     </div>
-    <div class="module">
-      <img src="sentro.png" alt="Platforms">
-      <div class="module-content">
-        <h3>Platforms</h3>
-        <p>Explore our goals and actionable plans for student empowerment and support.</p>
-        <button class="btn" id="btn2">View Platforms</button>
-      </div>
-    </div>
-    <div class="module">
-      <img src="sentro.png" alt="Photobooth">
-      <div class="module-content">
-        <h3>Photobooth</h3>
-        <p>View our Credentials and Platforms to Access your Photobooth Pictures!</p>
-        <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  © 2025 Sentro · All rights reserved 
-</footer>
+  <footer>
+    © 2025 Sentro · All rights reserved · <a href="https://instagram.com/youraccount" target="_blank">Instagram</a>
+  </footer>
 
-<script>
-  const site1 = "https://example.com/module1";
-  const site2 = "https://example.com/module2";
-  const site3 = "https://example.com/final";
+  <script>
+  
 
-  let visited1 = localStorage.getItem("visited1") === "true";
-  let visited2 = localStorage.getItem("visited2") === "true";
+    const site1 = "https://example.com/module1";
+    const site2 = "https://example.com/module2";
+    const site3 = "https://example.com/final";
 
-  const b1 = document.getElementById("btn1");
-  const b2 = document.getElementById("btn2");
-  const b3 = document.getElementById("btn3");
+    let visited1 = localStorage.getItem("visited1") === "true";
+    let visited2 = localStorage.getItem("visited2") === "true";
 
-  function unlockFinalModule() {
-    if (visited1 && visited2) {
-      b3.disabled = false;
-      b3.classList.remove("locked");
-      b3.textContent = "✔ Access Photobooth";
+    const b1 = document.getElementById("btn1");
+    const b2 = document.getElementById("btn2");
+    const b3 = document.getElementById("btn3");
+
+    function unlockFinalModule() {
+      if (visited1 && visited2) {
+        b3.disabled = false;
+        b3.classList.remove("locked");
+        b3.textContent = "✔ Access Photobooth";
+      }
     }
-  }
 
-  b1.addEventListener("click", () => {
-    visited1 = true;
-    localStorage.setItem("visited1", "true");
-    unlockFinalModule();
-    setTimeout(() => window.open(site1, "_blank"), 300);
-  });
+    b1.addEventListener("click", () => {
+      visited1 = true;
+      localStorage.setItem("visited1", "true");
+      unlockFinalModule();
+      setTimeout(() => window.open(site1, "_blank"), 300);
+    });
 
-  b2.addEventListener("click", () => {
-    visited2 = true;
-    localStorage.setItem("visited2", "true");
-    unlockFinalModule();
-    setTimeout(() => window.open(site2, "_blank"), 300);
-  });
+    b2.addEventListener("click", () => {
+      visited2 = true;
+      localStorage.setItem("visited2", "true");
+      unlockFinalModule();
+      setTimeout(() => window.open(site2, "_blank"), 300);
+    });
 
-  b3.addEventListener("click", () => {
-    if (!b3.disabled) window.open(site3, "_blank");
-  });
+    b3.addEventListener("click", () => {
+      if (!b3.disabled) window.open(site3, "_blank");
+    });
 
-  unlockFinalModule();
-</script>
-
+    unlockFinalModule();bod
+  </script>
 </body>
 </html>
