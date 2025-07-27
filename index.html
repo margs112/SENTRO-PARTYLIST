@@ -339,44 +339,45 @@ text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
   </div>
 
   <script>
-    const site1 = "https://margs112.github.io/SENTRO-CREDENTIALS/";
-    const site2 = "https://example.com/module2";
-    const site3 = "https://drive.google.com/drive/u/2/folders/1EgVgA7bLUt8ZVLazopWLvOfwdxKoNhPQ";
+   const site1 = "https://margs112.github.io/SENTRO-CREDENTIALS/";
+const site2 = "https://example.com/module2";
+const site3 = "https://drive.google.com/drive/u/2/folders/1EgVgA7bLUt8ZVLazopWLvOfwdxKoNhPQ";
 
-    let visited1 = localStorage.getItem("visited1") === "true";
-    let visited2 = localStorage.getItem("visited2") === "true";
+let visited1 = localStorage.getItem("visited1") === "true";
+let visited2 = localStorage.getItem("visited2") === "true";
 
-    const b1 = document.getElementById("btn1");
-    const b2 = document.getElementById("btn2");
-    const b3 = document.getElementById("btn3");
+const b1 = document.getElementById("btn1");
+const b2 = document.getElementById("btn2");
+const b3 = document.getElementById("btn3");
 
-    function unlockFinalModule() {
-      if (visited1 && visited2) {
-        b3.disabled = false;
-        b3.classList.remove("locked");
-        b3.textContent = "✔ Access Photobooth";
-      }
-    }
+function unlockFinalModule() {
+  if (visited1 && visited2) {
+    b3.disabled = false;
+    b3.classList.remove("locked");
+    b3.textContent = "✔ Access Photobooth";
+  }
+}
 
-    b1.addEventListener("click", () => {
-      visited1 = true;
-      localStorage.setItem("visited1", "true");
-      unlockFinalModule();
-      setTimeout(() => window.open(site1, "_blank"), 300);
-    });
+b1.addEventListener("click", () => {
+  visited1 = true;
+  localStorage.setItem("visited1", "true");
+  unlockFinalModule();
+  setTimeout(() => window.location.href = site1, 300);
+});
 
-    b2.addEventListener("click", () => {
-      visited2 = true;
-      localStorage.setItem("visited2", "true");
-      unlockFinalModule();
-      setTimeout(() => window.open(site2, "_blank"), 300);
-    });
+b2.addEventListener("click", () => {
+  visited2 = true;
+  localStorage.setItem("visited2", "true");
+  unlockFinalModule();
+  setTimeout(() => window.location.href = site2, 300);
+});
 
-    b3.addEventListener("click", () => {
-      if (!b3.disabled) window.open(site3, "_blank");
-    });
+b3.addEventListener("click", () => {
+  if (!b3.disabled) window.location.href = site3;
+});
 
-    unlockFinalModule();
+unlockFinalModule();
+
   </script>
 </body>
 </html>
