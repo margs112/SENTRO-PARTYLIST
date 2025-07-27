@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SENTRO PARTYLIST</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: url('red2.jpg') no-repeat center center;
+      background-size: cover;
+      color: #1f2937;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(139, 0, 0, 0.75); /* deeper red */
+      z-index: -1;
+    }
+
+ .topnav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #460000; /* This is a strong classy red */
+  z-index: 1001;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+}
+
+
+    .topnav .logo-text {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .topnav-links a {
+      color: #f8fafc;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .topnav-links a:hover {
+      color: #dc2626;
+    }
+
+    header {
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url('sentrogroup.png') no-repeat center center;
+      background-size: cover;
+      padding-top: 60px;
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 48px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .logo {
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    .logo img {
+      width: 100px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .module-group {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .module-group h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #111827;
+    }
+
+    .modules {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .module {
+      flex: 1 1 calc(33% - 20px);
+      min-width: 280px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .module:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .module img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .module-content {
+      padding: 20px;
+    }
+
+    .module-content h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .module-content p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: #111827;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      background-color: #000;
+      transform: scale(1.05);
+    }
+
+    .btn.locked {
+      background-color: #d1d5db;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(31, 41, 55, 0.9);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #a5f3fc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #22d3ee;
+    }
+
+    @media (max-width: 768px) {
+      .modules {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      header h1 {
+        font-size: 36px;
+      }
+
+      .topnav {
+        flex-direction: column;
+        padding: 10px 20px;
+        align-items: flex-start;
+      }
+
+      .topnav-links {
+        margin-top: 10px;
+      }
+
+      .topnav-links a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top nav -->
+<div class="topnav">
+  <div class="logo-text">Sentro</div>
+  <div class="topnav-links">
+    <a href="https://facebook.com">Home</a>
+    <a href="https://www.facebook.com/DLSLSentro">Facebook</a>
+    <a href="https://www.instagram.com/sentrogram/">Instagram</a>
+    <a href="https://www.dlsl.edu.ph/">DLSL Website</a>
+  </div>
+</div>
+
+<header>
+  <div class="logo">
+    <img src="sentro.png" alt="Sentro Logo" />
+  </div>
+  <h1></h1>
+</header>
+
+<section class="module-group">
+  <h2>About Sentro</h2>
+  <div class="modules">
+    <div class="module">
+      <img src="sentro.png" alt="Credentials">
+      <div class="module-content">
+        <h3>Credentials</h3>
+        <p>See our track record, leadership experience, and achievements through the years.</p>
+        <button class="btn" id="btn1">View Credentials</button>
+      </div>
+    </div>
+    <div class="module">
+      <img src="sentro.png" alt="Platforms">
+      <div class="module-content">
+        <h3>Platforms</h3>
+        <p>Explore our goals and actionable plans for student empowerment and support.</p>
+        <button class="btn" id="btn2">View Platforms</button>
+      </div>
+    </div>
+    <div class="module">
+      <img src="sentro.png" alt="Photobooth">
+      <div class="module-content">
+        <h3>Photobooth</h3>
+        <p>View our Credentials and Platforms to Access your Photobooth Pictures!</p>
+        <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Sentro · All rights reserved 
+</footer>
+
+<script>
+  const site1 = "https://example.com/module1";
+  const site2 = "https://example.com/module2";
+  const site3 = "https://example.com/final";
+
+  let visited1 = localStorage.getItem("visited1") === "true";
+  let visited2 = localStorage.getItem("visited2") === "true";
+
+  const b1 = document.getElementById("btn1");
+  const b2 = document.getElementById("btn2");
+  const b3 = document.getElementById("btn3");
+
+  function unlockFinalModule() {
+    if (visited1 && visited2) {
+      b3.disabled = false;
+      b3.classList.remove("locked");
+      b3.textContent = "✔ Access Photobooth";
+    }
+  }
+
+  b1.addEventListener("click", () => {
+    visited1 = true;
+    localStorage.setItem("visited1", "true");
+    unlockFinalModule();
+    setTimeout(() => window.open(site1, "_blank"), 300);
+  });
+
+  b2.addEventListener("click", () => {
+    visited2 = true;
+    localStorage.setItem("visited2", "true");
+    unlockFinalModule();
+    setTimeout(() => window.open(site2, "_blank"), 300);
+  });
+
+  b3.addEventListener("click", () => {
+    if (!b3.disabled) window.open(site3, "_blank");
+  });
+
+  unlockFinalModule();
+</script>
+
+</body>
+</html>
