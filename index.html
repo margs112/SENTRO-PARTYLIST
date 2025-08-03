@@ -2,10 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SENTRO PARTYLIST</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+   .collapse-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+      padding-top: 0;
+      opacity: 0;
+    }
+
+    .collapse-content.active {
+  max-height: 500px; /* you can adjust this */
+  overflow-y: auto;
+  padding-top: 1rem;
+  opacity: 1;
+  scrollbar-width: thin;
+}
+
+.collapse-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+
+
+    .collapse-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.collapsible-content.active {
+  max-height: 2000px; /* make this big enough for your image height */
+  padding: 15px;
+}
+
+.collapsible-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* ensures the whole image shows */
+}
+
+ .toggle-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8B0000;
+    cursor: pointer;
+    margin-left: auto;
+  }
+.text-box {
+  transition: transform 0.3s ease;
+}
+
+.text-box:hover {
+  transform: scale(1.03);
+}
+
+.text-box a button {
+  transition: all 0.3s ease, transform 0.3s ease;
+}
+
+.text-box a button:hover {
+  background-color: #8B0000;
+  color: white;
+  transform: scale(1.1); /* updated from translateY */
+}
+
 .fire-overlay {
   position: fixed;
   top: 0;
@@ -30,251 +104,173 @@
   100% { transform: scale(1.05) translateY(1px); opacity: 0.3; }
 }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      font-family: 'Inter', sans-serif;
-      background: url('red2.jpg') no-repeat center center;
-      background-size: cover;
-      color: #1f2937;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(139, 0, 0, 0.75);
-      z-index: -1;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 1s ease-out forwards;
-    }
-
-    .fade-in {
-      animation: fadeIn 1.2s ease-out forwards;
-    }
-
-    .site-wrapper {
-  position: relative;
-  z-index: 1;
+@media (max-width: 600px) {
+  .text-box {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+.text-box {
+  max-width: 660px; /* 👈 keeps it a bit narrower */
+  margin: 0 auto;
 }
 
 
-    .topnav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #460000;
-      z-index: 1001;
+  .text-box a {
+    align-self: flex-end;
+  }
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('red2.jpg') no-repeat center center / cover;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px;
-    }
-
-    .topnav .logo-text {
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .topnav-links a {
-      color: #f8fafc;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .topnav-links a:hover {
-      color: #dc2626;
-    }
-
-    header {
-      height: 340px;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      background:
-    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), /* increased from 0.4 to 0.65 */
-    url('sentrogroup.png') no-repeat center center;
-      background-size: cover;
-      padding-top: 60px;
+      min-height: 100vh;
+      padding: 2rem;
     }
 
-    header h1 {
-      color: #fff;
-      font-size: 50px;
-      font-family: 'Playfair Display', serif;
-text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-    }
+    .wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  max-width: 760px; /* 👈 reduced from 1000px */
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* 👈 reduced from 2rem */
+  animation: fadeIn 1s ease-in-out;
+}
+.wrapper {
+  position: relative;     /* Add this */
+  z-index: 1;             /* Bring it above the fire */
+  background: rgba(255, 255, 255, 0.95);
+  /* ...rest of your existing styles... */
+}
+
+    .top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 
     .logo {
-      margin-bottom: 15px;
-      transition: transform 0.4s ease;
-    }
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: dropIn 1s ease-out;
+}
 
-    .logo:hover {
-      transform: scale(1.1);
-    }
 
     .logo img {
-      width: 100px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .module-group {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .module-group h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #111827;
-    }
-
-    .modules {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .module {
-      flex: 1 1 calc(33% - 20px);
-      min-width: 280px;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .module:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    }
-
-    .module img {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
+      height: auto;
+      border-radius: 50%;
     }
 
-    .module-content {
-      padding: 20px;
+    .main-img {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 1.2s ease;
     }
 
-    .module-content h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 10px;
+   .text-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;            /* ✅ Ensure full width of parent */
+  max-width: 700px;       /* ✅ Constrain max size */
+  margin: 0 auto;         /* ✅ Center horizontally */
+}
+
+
+
+.text-box h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #8B0000;
+  margin: 0;
+}
+
+.text-box p {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.text-content {
+  flex: 1;
+  min-width: 200px;
+  min-height: 30px; /* Adjust as needed for visual balance */
+}
+
+
+.text-box a button {
+  padding: 0.4rem 1.2rem;
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: #8B0000;
+  border: 2px solid #8B0000;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.text-box a button:hover {
+  background-color: #8B0000;
+  color: white;
+  transform: translateY(-2px);
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    .module-content p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 15px;
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 24px;
-      border: none;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      background-color: #111827;
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.3s, background-color 0.3s;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-
-    .btn:hover {
-      background-color: #000;
-      transform: scale(1.05);
-    }
-
-    .btn.locked {
-      background-color: #d1d5db;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      background: rgba(31, 41, 55, 0.9);
-      color: #fff;
-      font-size: 14px;
-    }
-
-    footer a {
-      color: #a5f3fc;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #22d3ee;
+    @keyframes dropIn {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @media (max-width: 768px) {
-      .modules {
+      .top {
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
       }
-
-      header h1 {
-        font-size: 50px;
-      }
-
-      .topnav {
-        flex-direction: column;
-        padding: 10px 20px;
-        align-items: flex-start;
-      }
-
-      .topnav-links {
-        margin-top: 10px;
-      }
-
-      .topnav-links a {
-        margin-left: 0;
-        margin-right: 15px;
+      .main-img {
+        max-width: 90%;
       }
     }
   </style>
@@ -283,101 +279,223 @@ text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
 <div class="fire-overlay">
   <img src="https://media.tenor.com/3Dv1dt0VcxUAAAAM/fire.gif" alt="Fire" />
 </div>
-
-  <div class="site-wrapper">
-    <!-- Top nav -->
-    <div class="topnav fade-in-up">
-      <div class="logo-text">Sentro</div>
-      <div class="topnav-links">
-        <a href="https://facebook.com">Home</a>
-        <a href="https://www.facebook.com/DLSLSentro">Facebook</a>
-        <a href="https://www.instagram.com/sentrogram/">Instagram</a>
-        <a href="https://www.dlsl.edu.ph/">DLSL Website</a>
-      </div>
-    </div>
-
-    <header class="fade-in-up">
+  <div class="wrapper">
+    <div class="top">
       <div class="logo">
-        <img src="sentro.png" alt="Sentro Logo" />
+        <img src="sentro.png" alt="Logo">
       </div>
-      <h1>Sentro Partylist</h1>
-    </header>
-
-    <section class="module-group fade-in-up">
-      <h2>About Sentro</h2>
-      <div class="modules">
-        <div class="module">
-          <img src="sentro.png" alt="Credentials">
-          <div class="module-content">
-            <h3>Credentials</h3>
-            <p>See our track record, leadership experience, and achievements through the years.</p>
-            <button class="btn" id="btn1">View Credentials</button>
-          </div>
-        </div>
-        <div class="module">
-          <img src="sentro.png" alt="Platforms">
-          <div class="module-content">
-            <h3>Platforms</h3>
-            <p>Explore our goals and actionable plans for student empowerment and support.</p>
-            <button class="btn" id="btn2">View Platforms</button>
-          </div>
-        </div>
-        <div class="module">
-          <img src="sentro.png" alt="Photobooth">
-          <div class="module-content">
-            <h3>Photobooth</h3>
-            <p>View our Credentials and Platforms to Access your Photobooth Pictures!</p>
-            <button class="btn locked" id="btn3" disabled>🔒 Locked</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="fade-in">
-      © 2025 Sentro · All rights reserved
-    </footer>
+         </div>
+   <div class="text-box" onclick="toggleCollapse(this)">
+  <div class="text-content">
+    <h1>Integrated School President</h1>
+    <p>View the IS Presidential Candidate's credentials here.</p>
   </div>
+  <span class="toggle-icon">+</span>
+  <div class="collapse-content">
+    <img src="indivpic.png" alt="IS President">
+    <h2>Leadership Credentials</h2>
+<ul>
+  <li>G11 SSCB Vice President of S.Y. 2024 - 2025</li>
+  <li>Lasallian Delegate in the Youth Jubilee 2025 in Rome, Italy</li>
+  <li>GS & JHS SCB Vice President of S.Y. 2023-2024</li>
+  <li>GS SCB Vice President of S.Y. 2019-2020</li>
+  <li>Grade 4 SCB Representative (S.Y. 2017-2018)</li>
+  <li>Grade 5 SCB Representative (S.Y. 2018-2019)</li>
+  <li>Grade 7 SCB Representative (S.Y. 2020-2021)</li>
+  <li>Grade 8 SCB Representative (S.Y. 2021-2022)</li>
+  <li>Grade 9 SCB Representative (S.Y. 2022-2023)</li>
+  <li>BULIK Associate Editor-In-Chief (S.Y. 2022-2023)</li>
+  <li>Search Insight Batch 8 Observer (S.Y. 2022-2023)</li>
+  <li>Bible Varsity President (S.Y. 2021-2022)</li>
+  <li>Grade 4 CAPSTONE Leader (S.Y. 2017-2018)</li>
+  <li>Grade 5 CAPSTONE Leader (S.Y. 2018-2019)</li>
+  <li>Grade 6 CAPSTONE Leader (S.Y. 2019-2020)</li>
+  <li>Grade 7 CAPSTONE Leader (S.Y. 2020-2021)</li>
+  <li>Grade 8 CAPSTONE Leader (S.Y. 2021-2022)</li>
+  <li>Grade 9 CAPSTONE Leader (S.Y. 2022-2023)</li>
+  <li>Grade 10 CAPSTONE Leader (S.Y. 2023-2024)</li>
+  <li>Grade 11 CAPSTONE Leader (S.Y. 2024 - 2025)</li>
+  <li>Grade 1 Class P.R.O. (S.Y. 2014-2015)</li>
+  <li>Grade 2 Class Student Marshall (S.Y. 2015-2016)</li>
+  <li>Grade 3 Class Sports Marshall (S.Y. 2016-2017)</li>
+  <li>Grade 4 Class Earth Marshall (S.Y. 2017-2018)</li>
+</ul>
+&nbsp
+<h2>Organizations</h2>
+<ul>
+  <li>Student Coordinating Board (Since S.Y. 2018)</li>
+  <li>BULIK (S.Y. 2022-2024)</li>
+  <li>BAKAS (S.Y. 2019-2020)</li>
+  <li>Search-Insight (S.Y. 2022-2023)</li>
+  <li>Sunhill Montessori Casa Abacus Team (S.Y. 2013-2014)</li>
+  <li>Math Varsity (S.Y. 2017-2020)</li>
+  <li>Social Studies Varsity (S.Y. 2018-2020)</li>
+  <li>Bible Varsity (S.Y. 2021-2022)</li>
+  <li>Societas Juventus Member (S.Y. 2020-2021)</li>
+  <li>Liturgical Choir (S.Y. 2017-2018)</li>
+  <li>Dance Club (S.Y. 2016-2017)</li>
+</ul>
+  </div>
+</div>
 
-  <script>
-   const site1 = "https://margs112.github.io/SENTRO-CREDENTIALS/";
-const site2 = "https://example.com/module2";
-const site3 = "https://drive.google.com/drive/u/2/folders/1EgVgA7bLUt8ZVLazopWLvOfwdxKoNhPQ";
+<div class="text-box" onclick="toggleCollapse(this)">
+  <div class="text-content">
+    <h1>Grade 12 Vice President</h1>
+    <p>View the Grade 12 Vice Presidential Candidate's credentials here.</p>
+  </div>
+  <span class="toggle-icon">+</span>
+  <div class="collapse-content">
+    <img src="indivpic.png" alt="G12 VP">
+<h2>LEADERSHIP CREDENTIALS</h2>
+<ul>
+  <li>Grade 11 SCB ABM Representative (S.Y. 2024-2025)</li>
+  <li>Grade 11 CAPSTONE Leader (S.Y. 2024-2025)</li>
+  <li>Football Girls Club President (S.Y. 2023-2024)</li>
+  <li>Grade 10 CAPSTONE Leader (S.Y. 2023-2024)</li>
+  <li>Class President (S.Y. 2023-2024)</li>
+  <li>Grade 9 CAPSTONE Leader (S.Y. 2022-2023)</li>
+  <li>Class President (S.Y. 2022-2023)</li>
+  <li>Grade 8 CAPSTONE Leader (S.Y. 2021-2022)</li>
+  <li>Class President (S.Y. 2021-2022)</li>
+  <li>Grade 7 CAPSTONE Leader (S.Y. 2020-2021)</li>
+  <li>Book Lovers Club Secretary (S.Y. 2019-2020)</li>
+  <li>Grade 6 CAPSTONE Leader (S.Y. 2019-2020)</li>
+  <li>Class President (S.Y. 2019-2020)</li>
+  <li>Grade 5 CAPSTONE Leader (S.Y. 2018-2019)</li>
+  <li>Class Student Marshal (S.Y. 2018-2019)</li>
+  <li>Grade 4 CAPSTONE Leader (S.Y. 2017-2018)</li>
+  <li>Class Secretary (S.Y. 2017-2018)</li>
+</ul>
+&nbsp
+<h2>ORGANIZATIONS</h2>
+<ul>
+  <li>Student Coordinating Board (S.Y. 2024-2025)</li>
+  <li>Football Girls Club (S.Y. 2023-2024)</li>
+  <li>Search-Insight (S.Y. 2022-2023)</li>
+  <li>Book Lovers Club (S.Y. 2019-2020)</li>
+  <li>BAKAS - Copywriting & Headline Writing (S.Y. 2019-2020)</li>
+  <li>BAKAS - Copywriting & Headline Writing (S.Y. 2019-2020)</li>
+  <li>Anti-Bullying Club (S.Y. 2018-2019)</li>
+  <li>BAKAS - Copywriting & Headline Writing (S.Y. 2018-2019)</li>
+  <li>Dance Club (S.Y. 2016-2018)</li>
+</ul>
+  </div>
+</div>
 
-let visited1 = localStorage.getItem("visited1") === "true";
-let visited2 = localStorage.getItem("visited2") === "true";
+<div class="text-box" onclick="toggleCollapse(this)">
+  <div class="text-content">
+    <h1>Grade 11 Vice President</h1>
+    <p>View the Grade 11 Vice Presidential Candidate's credentials here.</p>
+  </div>
+  <span class="toggle-icon">+</span>
+  <div class="collapse-content">
+    <img src="indivpic.png" alt="G11 VP">
+   <h2>LEADERSHIP CREDENTIALS</h2>
+<ul>
+  <li>Grade 1 Class President</li>
+  <li>Grade 2 Class President</li>
+  <li>Grade 3 Class President</li>
+  <li>Grade 4 Class Vice President</li>
+  <li>Grade 5 Class President</li>
+  <li>Grade 6 Class President</li>
+  <li>Grade 7 Class President</li>
+  <li>Grade 8 Class President</li>
+  <li>Grade 7 CAPSTONE Co-Leader</li>
+  <li>Grade 9 CAPSTONE Co-Leader</li>
+  <li>Grade 10 CAPSTONE Co-Leader</li>
+  <li>Supreme Pupil Government Grade 2 Representative</li>
+  <li>Supreme Pupil Government Grade 3 Representative</li>
+  <li>Supreme Pupil Government Grade 4 Councilor</li>
+  <li>Supreme Pupil Government Grade 5 Councilor</li>
+  <li>Supreme Pupil Government Mayoral Candidate</li>
+  <li>Student Coordinating Board Grade 9 Representative</li>
+  <li>Student Coordinating Board Grade 10 Representative</li>
+  <li>Outstanding Officer of the JHS SCB (S.Y. ‘24–’25)</li>
+</ul>
+&nbsp
+<h2>ACADEMIC CREDENTIALS</h2>
+<ul>
+  <li>Grade 1 First Honor</li>
+  <li>Grade 2 First Honor</li>
+  <li>Grade 3 With High Honors</li>
+  <li>Grade 4 With High Honors</li>
+  <li>Grade 5 With High Honors</li>
+  <li>Grade 6 With High Honors</li>
+  <li>Grade 7 With Highest Honors</li>
+  <li>Grade 8 With Highest Honors</li>
+  <li>Grade 9 With Highest Honors</li>
+  <li>Grade 10 With Highest Honors</li>
+  <li>Journalism News Writer Silver Medalist (S.Y. ‘19–’20)</li>
+  <li>Champion in Batang Mapagmahal District and Division Level (S.Y. ‘20–’21)</li>
+  <li>Spelling Bee Silver Medalist (S.Y. ‘18–’19)</li>
+  <li>MTAP Challenge Gold Medalist (S.Y. ‘15–’16)</li>
+  <li>MTAP Challenge Silver Medalist (S.Y. ‘16–’17)</li>
+  <li>MTAP Challenge Gold Medalist (S.Y. ‘17–’18)</li>
+  <li>MTAP Challenge Silver Medalist (S.Y. ‘18–’19)</li>
+</ul>
+&nbsp
+<h2>ORGANIZATIONS</h2>
+<ul>
+  <li>Supreme Pupil Government (S.Y. ‘16–’17)</li>
+  <li>Supreme Pupil Government (S.Y. ‘17–’18)</li>
+  <li>Supreme Pupil Government (S.Y. ‘18–’19)</li>
+  <li>Supreme Pupil Government (S.Y. ‘19–’20)</li>
+  <li>Journalism Club (S.Y. ‘19–’20)</li>
+  <li>Journalism Club (S.Y. ‘20–’21)</li>
+  <li>Student Coordinating Board (S.Y. ‘23–‘24)</li>
+  <li>Student Coordinating Board (S.Y. ‘24–’25)</li>
+</ul>
+  </div>
+</div>
 
-const b1 = document.getElementById("btn1");
-const b2 = document.getElementById("btn2");
-const b3 = document.getElementById("btn3");
+<div class="text-box">
+  <div class="text-content">
+    <h1>Grade 12 Representatives</h1>
+    <p>View the Grade 12 Representative Candidates' credentials here.</p>
+  </div>
+  <a href="https://margs112.github.io/G12CREDENTIALS/" rel="noopener">
+    <button>→</button>
+  </a>
+</div>
+<div class="text-box">
+  <div class="text-content">
+    <h1>Grade 11 Representatives</h1>
+    <p>View the Grade 11 Representative Candidates' credentials here.
 
-function unlockFinalModule() {
-  if (visited1 && visited2) {
-    b3.disabled = false;
-    b3.classList.remove("locked");
-    b3.textContent = "✔ Access Photobooth";
+</p>
+  </div>
+  <a href="https://margs112.github.io/G11CREDENTIALS/" rel="noopener">
+    <button>→</button>
+  </a>
+</div>
+  </div>
+<script>
+  document.querySelectorAll('.collapse-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      content.classList.toggle('active');
+    });
+  });
+  function toggleCollapse(box) {
+    const content = box.querySelector('.collapse-content');
+    const icon = box.querySelector('.toggle-icon');
+    const isActive = content.classList.contains('active');
+
+    // Collapse all others
+    document.querySelectorAll('.collapse-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.text-box').forEach(b => {
+      b.classList.remove('open');
+      const i = b.querySelector('.toggle-icon');
+      if (i) i.textContent = '+';
+    });
+
+    // Toggle current
+    if (!isActive) {
+      content.classList.add('active');
+      box.classList.add('open');
+      if (icon) icon.textContent = '−';
+    }
   }
-}
-
-b1.addEventListener("click", () => {
-  visited1 = true;
-  localStorage.setItem("visited1", "true");
-  unlockFinalModule();
-  setTimeout(() => window.location.href = site1, 300);
-});
-
-b2.addEventListener("click", () => {
-  visited2 = true;
-  localStorage.setItem("visited2", "true");
-  unlockFinalModule();
-  setTimeout(() => window.location.href = site2, 300);
-});
-
-b3.addEventListener("click", () => {
-  if (!b3.disabled) window.location.href = site3;
-});
-
-unlockFinalModule();
-
-  </script>
+</script>
 </body>
 </html>
